@@ -1,23 +1,19 @@
-(function () {
-    'use strict';
-    app.run(run).config(config);
-    run.$inject = ['$rootScope', '$localStorage', '$location'];
-    function run($rootScope, $localStorage, $location) {
-        $rootScope.$on('$stateChangeStart', function (event, fromState, toState, fromParams, toParams) {
-            if (!($localStorage.login_details)) {
-                $location.path('/login');
-            }
-            //    console.log('Routing is called');
+app.config(config);
+config.$inject=['$routeProvider'];
+function config($routeProvider) {
+    $routeProvider
+        .otherwise('/index', {
+            templateUrl: 'index.html',
+            controller: 'homeCtrl'
+        })
+        .when('/index', {
+            url: '/index',
+            templateUrl: 'index.html',
+            controller: 'homeCtrl'
+        })
+        .when('/login', {
+            url: '/login',
+            templateUrl: 'templates/login.html',
+            controller: 'loginCtrl'
         });
-    }
-
-    config.$inject = ['$stateProvider', '$urlRouterProvider'];
-    function config($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/home');
-        $stateProvider.state('home', {
-            url: '/home',
-            templateUrl: 'templates/home.html',
-            controller: 'home'
-        });
-    }
-});
+}

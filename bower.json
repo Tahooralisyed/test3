@@ -7,6 +7,7 @@
   "private": true,
   "dependencies": {
     "angular": "~1.5.0",
+    "angular-route": "~1.5.0",
     "angular-ui-router": "~0.2.18",
     "ngstorage":"~0.3.11",
     "bootstrap":"~3.3.7"

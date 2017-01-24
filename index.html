@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
+<div ng-view>
+
+</div>
 <!-- Bootstrap itself -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
@@ -12,33 +15,35 @@
 <link rel="shortcut icon" href="assets/images/gt_favicon.png">
 <script src="bower_components/angular/angular.js"></script>
 <script src="app.js"></script>
-<script src="config.js"></script>
+<!--<script src="config.js"></script> -->
 <script src="controllers/home.js"></script>
 <script src="controllers/about.js"></script>
 <script src="controllers/bookcheckin.js"></script>
 <script src="controllers/search.js"></script>
+<script src="controllers/login.js"></script>
+<script src="controllers/register.js"></script>
+<script src="controllers/dashboard.js"></script>
+
 <body class="theme-invert">
 
 <nav class="mainmenu">
     <div class="container">
         <div class="dropdown">
-            <button type="button" class="navbar-toggle" data-toggle="dropdown"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-            <!-- <a data-toggle="dropdown" href="#">Dropdown trigger</a> -->
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                <li><a href="#head" class="active">Home</a></li>
-                <li><a href="#login">Login</a></li>
-                <li><a href="#register">Register</a></li>
-                <li><a href="#search">Search</a></li>
-                <li><a href="#bookcheckin">Book Check In</a></li>
+        <button type="button" class="navbar-toggle" data-toggle="dropdown"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <!-- <a data-toggle="dropdown" href="#">Dropdown trigger</a> -->
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+           <!-- <li><a href="#head" class="active">Home</a></li> -->
+            <li><a href="#login"><i class="fa fa-sign-in fa-fw"></i>Login</a></li>
+            <li><a href="#register">Register</a></li>
+            <li><a href="#search"><i class="fa  fa-search-plus  fa-fw"></i>Search</a></li>
+            <li><a href="#bookcheckin"><i class="fa fa-book fa-fw"></i>Book Check In</a></li>
+            <li><a href="#dashboard"><i class="fa fa-dashboard fa-fw"></i>Dash Board</a></li>
 
-            </ul>
+        </ul>
         </div>
     </div>
-    <div class="col-sm-10 col-sm-offset-10">
-    <li><a href="#about">About me</a></li>
-    </div>
-    <div class="col-sm-10 col-sm-offset-10">
-        <li><a href="#contact">Contact</a></li>
+    <div class="col-sm-2 col-sm-offset-10">
+  <h4>  <li><a href="#about">About</a ></li></h4>
     </div>
 </nav>
 
@@ -116,24 +121,7 @@
         </div>
     </div>
 </section>
-<section class="section" id="login">
-    <div class="container">
-        <h2 class="text-center title">Login</h2>
-        <div class="row">
-            <div class="col-sm-5 col-sm-offset-5">
-                <form class="form-inline">
-                    <div class="form-group">
-                    <input type="text" class="form-control" id="username" placeholder="User Name">
-            </div><br><br>
-            <div class="form-group">
-                <input type="password" class="form-control" id="password" placeholder="Password">
-                <br><br>
-                <button type="submit" class="btn btn-default">Submit</button>&emsp;&emsp;
-                <button type="reset" class="btn btn-default">Cancel</button>
-                <br><br>
-                <li><a href="#forgotpassword">Forgot Password</a></li>
-            </div></form></div></div></div></section>
-<section class="section" id="register">
+<section class="section" ng-controller="registerCtrl" id="register">
     <div class="container">
         <h2 class="text-center title">Register</h2>
         <div class="row">
@@ -155,6 +143,32 @@
                     <button type="submit" class="btn btn-default">Submit</button>&emsp;&emsp;
                     <button type="reset" class="btn btn-default">Cancel</button>
                 </form></div></div></div></section>
+<section class="section"ng-controller="loginCtrl" id="login">
+    <div class="container">
+        <h2 class="text-center title">Login</h2>
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-5">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="username" placeholder="User Name">
+                    </div><br><br>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+
+                        <br><br>
+                        <button type="submit" class="btn btn-default">Submit</button>&emsp;&emsp;
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                        <br><br>
+                        <span>
+								    <center>
+									<!--<button class="btn-outline btn-info btn-sm">Login</button>-->
+									<a href="Dashboard.html" class="btn btn-primary btn-outline btn-circle btn-md" ><i class="fa fa-user"></i></a>
+
+									</center>
+								</span><br>
+
+                        <li><a href="#forgotpassword">Forgot Password</a></li>
+                    </div></form></div></div></div></section>
 <section class="section" ng-controller="searchCtrl" id="search">
     <div class="container">
         <h2 class="text-center title">Search</h2>
@@ -170,7 +184,29 @@
                         <button type="submit" class="btn btn-default">Submit</button>&emsp;&emsp;
                         <button type="reset" class="btn btn-default">Cancel</button>
                     </div></form></div></div></div></section>
+<section class="section" ng-controller="dashboardCtrl" id="dashboard">
+    <div class="container">
+        <h2 class="text-center title">Search</h2>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
 
+            <!-- /.col-lg-12 -->
+        <!-- /.row -->
+                <a href="#bookcheckin" class="btn btn-outline btn-default btn-block ">
+                    <i class="fa fa-book "></i> Books Inventory Check In
+                </a>
+                <br>
+                <a href="booklist.html" class="btn btn-outline btn-default btn-block">
+                    <i class="fa fa-search-plus "></i> Search Book Inventory &emsp;
+                </a>
+            </div>
+
+
+</div></div>
+        </div></div></section>
+<div ng-view>
+
+</div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="assets/js/modernizr.custom.72241.js"></script>
